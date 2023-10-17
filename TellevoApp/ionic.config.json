@@ -1,0 +1,7 @@
+{
+  "name": "casomovil",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
