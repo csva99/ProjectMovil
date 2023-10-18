@@ -30,7 +30,11 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'page404',
     pathMatch: 'full'
+  },  {
+    path: 'posts',
+    loadChildren: () => import('./posts/posts.module').then( m => m.PostsPageModule)
   },
+
 
   
 ];
