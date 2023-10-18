@@ -14,7 +14,7 @@ export class PostsPage implements OnInit {
   ngOnInit() {
   }
 
-  async listar(){
+listar(){
     this.api.listarPost().subscribe(
       (usuarios)=>{
         console.log(usuarios);
