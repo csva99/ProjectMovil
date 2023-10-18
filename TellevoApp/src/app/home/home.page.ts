@@ -11,10 +11,12 @@ import { IonModal,AlertController } from '@ionic/angular';
 })
 export class HomePage {
   @ViewChild(IonModal) modal!: IonModal;
+  auth: any;
 
   constructor(private router: Router, public alertController : AlertController) {}
 
   public mensaje = ""
+  public estado: String = "";
 
   public alertButtons = ['OK'];
   user = {
@@ -51,7 +53,18 @@ export class HomePage {
     this.modal.dismiss(null, 'cancel');
   }
 
-  async confirm() {
+  confirm() {
+    this.auth.register(this.user.usuario, this.user.password).then((res: any)=> {
+      if(res){
+        this.estado = "usuario ya existe";
+      }else{
+        this.mensaje = "Registro exitoso";
+        this.modal.dismiss(this.user.usuario, 'confirm');
+      }
+    })
+  }
+
+  /* async confirm() {
     if (this.user.usuario != "" && this.user.password != "" && this.user.password == this.user.confirmarpass) {
       this.mensaje = "Registro Exitoso.";
       this.modal.dismiss(null, 'confirmar');
@@ -63,7 +76,7 @@ export class HomePage {
       });
       await alert.present();
     }
-  }
+  } */
 
   async irarestablecer(){
     this.router.navigate(['restablecerpass'])

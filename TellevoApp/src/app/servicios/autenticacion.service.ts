@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Storage } from '@ionic/storage-angular';
-import { promises } from 'dns';
 
 
 interface User{
@@ -51,6 +50,11 @@ export class AutenticacionService {
     }
     this.autenticado = false;
     return false;
+  }
+
+  logout(){
+    this.autenticado = false;
+    this.route.navigate(['/home']);
   }
   
 }
