@@ -60,7 +60,7 @@ export class LoginPage implements OnInit {
 
   salir(){
     this.router.navigate(['home']);
-    localStorage.removeItem("User");
+    localStorage.removeItem("Datos");
     this.modal.dismiss(null, 'salir');
   }
 
