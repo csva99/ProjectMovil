@@ -2,6 +2,8 @@ import { Component,ViewChild,ElementRef} from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { IonModal,AlertController } from '@ionic/angular';
 
+import { AutenticacionService } from '../servicios/autenticacion.service';
+
 
 
 @Component({
@@ -11,9 +13,8 @@ import { IonModal,AlertController } from '@ionic/angular';
 })
 export class HomePage {
   @ViewChild(IonModal) modal!: IonModal;
-  auth: any;
 
-  constructor(private router: Router, public alertController : AlertController) {}
+  constructor(private router: Router, public alertController : AlertController, private auth: AutenticacionService) {}
 
   public mensaje = ""
   public estado: String = "";
@@ -25,16 +26,21 @@ export class HomePage {
     confirmarpass: ""
   }
   
-  async enviarInformacion() {
-    if (this.user.usuario != "") {
-      let navigationExtras: NavigationExtras = {
-        state: { user: this.user }
+  enviarInformacion() {
+    this.auth.login(this.user.usuario, this.user.password).then(()=>{
+      if (this.auth.autenticado ) {
+        let navigationExtras: NavigationExtras = {
+          state: { user: this.user }
+        }
+        this.router.navigate(['/login'], navigationExtras);
+      } else {
+        this.mensaje = "Porfavor ingrese sus credenciales.";
       }
-      this.router.navigate(['/login'], navigationExtras);
-    } else {
-      this.mensaje = "Porfavor ingrese sus credenciales.";
-    }
+    })
+      
   }
+
+
   async mostrarConsola() {
     console.log(this.user);
     if (this.user.usuario != "" && this.user.password != "") {
@@ -53,20 +59,20 @@ export class HomePage {
     this.modal.dismiss(null, 'cancel');
   }
 
-  confirm() {
-    this.auth.register(this.user.usuario, this.user.password).then((res: any)=> {
-      if(res){
+   async confirm() {
+    this.auth.register(this.user.usuario, this.user.password, this.user.confirmarpass).then((a: any)=> {
+      if(a){
         this.estado = "usuario ya existe";
       }else{
         this.mensaje = "Registro exitoso";
         this.modal.dismiss(this.user.usuario, 'confirm');
       }
     })
-  }
+  } 
 
-  /* async confirm() {
-    if (this.user.usuario != "" && this.user.password != "" && this.user.password == this.user.confirmarpass) {
-      this.mensaje = "Registro Exitoso.";
+   /* async confirm() {
+    if (this.user.usuario != "" && this.user.password != "" && this.user.password == this.user.confirmarpass ) {
+      this.estado = "Usuario ya existe.";
       this.modal.dismiss(null, 'confirmar');
     } else {
       const alert = await this.alertController.create({
@@ -76,7 +82,7 @@ export class HomePage {
       });
       await alert.present();
     }
-  } */
+  }  */
 
   async irarestablecer(){
     this.router.navigate(['restablecerpass'])

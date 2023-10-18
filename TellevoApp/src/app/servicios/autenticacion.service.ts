@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage-angular';
 interface User{
   username: string;
   password: string;
+  confirmarpass: string;
 }
 
 @Injectable({
@@ -26,14 +27,14 @@ export class AutenticacionService {
   }
 
 
-  async register(username: string, password: string): Promise<boolean>{
+  async register(username: string, password: string, confirmarpass: string): Promise<boolean>{
     const users = await this.local?.get('users') || [];
-    const existe = users.find((us: User) => users.username === username && us.password === password);
+    const existe = users.find((us: User) => us.username === username && us.password === password && us.confirmarpass === confirmarpass) ;
     if(existe){
-      console.log("usuario existe")
+      console.log("usuario ya existe")
       return true;
     }else{
-      const nuevo: User = { username, password};
+      const nuevo: User = { username, password, confirmarpass};
       users.push(nuevo);
       await this.local.set('users', users);
       console.log("Registro exitoso");
