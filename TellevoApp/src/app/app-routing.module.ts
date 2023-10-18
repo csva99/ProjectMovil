@@ -19,6 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'restablecerpass',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./restablecerpass/restablecerpass.module').then( m => m.RestablecerpassPageModule)
   },
   
