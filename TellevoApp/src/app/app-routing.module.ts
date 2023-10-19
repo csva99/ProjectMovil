@@ -27,13 +27,15 @@ const routes: Routes = [
     loadChildren: () => import('./page404/page404.module').then( m => m.Page404PageModule)
   },
   {
-    path: '**',
-    redirectTo: 'page404',
-    pathMatch: 'full'
-  },  {
     path: 'posts',
     loadChildren: () => import('./posts/posts.module').then( m => m.PostsPageModule)
   },
+  {
+    path: '**',
+    redirectTo: 'page404',
+    pathMatch: 'full'
+  },
+
 
 
   
