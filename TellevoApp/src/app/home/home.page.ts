@@ -3,6 +3,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { IonModal,AlertController } from '@ionic/angular';
 
 import { AutenticacionService } from '../servicios/autenticacion.service';
+import { ApiService } from '../servicios/api.service';
 
 
 
@@ -14,36 +15,46 @@ import { AutenticacionService } from '../servicios/autenticacion.service';
 export class HomePage {
   @ViewChild(IonModal) modal!: IonModal;
 
-  constructor(private router: Router, public alertController : AlertController, private auth: AutenticacionService) {}
+  constructor(private router: Router, public alertController : AlertController, private auth: AutenticacionService, private api: ApiService) {}
 
   public mensaje = ""
   public estado: String = "";
 
   public alertButtons = ['OK'];
   user = {
-    usuario: "",
+    mail: "",
     password: "",
     confirmarpass: ""
   }
-  
+
+  cred : any = {
+    mail : "",
+    password : ""
+  }
+
   enviarInformacion() {
-    this.auth.login(this.user.usuario, this.user.password).then(()=>{
-      if (this.auth.autenticado ) {
-        let navigationExtras: NavigationExtras = {
-          state: { user: this.user }
-        }
-        this.router.navigate(['/login'], navigationExtras);
-      } else {
-        this.mensaje = "Porfavor ingrese sus credenciales.";
+    console.log(typeof this.cred)
+    console.log(this.cred.password)
+    const email = this.cred.mail
+    const password = this.cred.password
+    this.api.enviarcred(email,password).subscribe(
+      (response) => {
+        // Manejar la respuesta exitosa (guardar token, redirigir, etc.)
+        console.log('Login exitoso:', response);
+      },
+      (error) => {
+        // Manejar el error (mostrar mensaje de error, etc.)
+        console.log(Response)
+        console.error('Codigo de estado HTTP:', error.status);
+        console.error('Error en el login:', error);
       }
-    })
-      
+    );
   }
 
 
   async mostrarConsola() {
     console.log(this.user);
-    if (this.user.usuario != "" && this.user.password != "") {
+    if (this.user.mail != "" && this.user.password != "") {
       this.mensaje = "Usuario Conectado.";
     } else {
       const alert = await this.alertController.create({
@@ -60,12 +71,12 @@ export class HomePage {
   }
 
    async confirm() {
-    this.auth.register(this.user.usuario, this.user.password, this.user.confirmarpass).then((a: any)=> {
+    this.auth.register(this.user.mail, this.user.password, this.user.confirmarpass).then((a: any)=> {
       if(a){
-        this.estado = "usuario ya existe";
+        this.estado = "Correo ya existe";
       }else{
         this.mensaje = "Registro exitoso";
-        this.modal.dismiss(this.user.usuario, 'confirm');
+        this.modal.dismiss(this.user.mail, 'confirm');
       }
     })
   } 

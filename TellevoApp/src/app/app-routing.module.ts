@@ -31,10 +31,20 @@ const routes: Routes = [
     loadChildren: () => import('./posts/posts.module').then( m => m.PostsPageModule)
   },
   {
+    path: 'pasajero',
+    loadChildren: () => import('./pasajero/pasajero.module').then( m => m.PasajeroPageModule)
+  },
+  {
+    path: 'conductor',
+    loadChildren: () => import('./conductor/conductor.module').then( m => m.ConductorPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'page404',
     pathMatch: 'full'
   },
+  
+
 
 
 

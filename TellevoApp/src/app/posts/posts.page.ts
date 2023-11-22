@@ -13,16 +13,4 @@ export class PostsPage implements OnInit {
 
   ngOnInit() {
   }
-
-listar(){
-    this.api.listarPost().subscribe(
-      (usuarios)=>{
-        console.log(usuarios);
-      }
-      ,
-      (error)=>{
-        console.log(error);
-      }
-    )
-  }
 }
