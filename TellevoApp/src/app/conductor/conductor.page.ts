@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
+import { ViewChild,ElementRef } from '@angular/core';
+
+declare var google : any;
 
 @Component({
   selector: 'app-conductor',
@@ -8,19 +11,19 @@ import { Geolocation } from '@capacitor/geolocation';
 })
 export class ConductorPage implements OnInit {
 
-  constructor(public geolocation: Geolocation) { }
+  map : any;
+  // @ViewChild('map', {read: ElementRef, static: false}) mapRef: ElementRef;
 
-  ngOnInit() {
+  mostrarmapa(){
+    const map = new google.map.Latlng(this.getCurrentLocation)
+
   }
-
-
 
   async getCurrentLocation() {
     try {
-      // Obtener la posición actual
+
       const position = await Geolocation.getCurrentPosition();
 
-      // Convertir la posición a GeolocationPosition
       const coordinates: GeolocationPosition = {
         coords: {
           accuracy: position.coords.accuracy,
@@ -34,18 +37,23 @@ export class ConductorPage implements OnInit {
         timestamp: position.timestamp,
       };
 
-      // Acceder a las coordenadas
       const latitude = coordinates.coords.latitude;
       const altitude = coordinates.coords.longitude;
 
-      // Mostrar las coordenadas en la consola (puedes mostrarlas de la manera que prefieras)
       console.log('Latitud: ' + latitude);
       console.log('Altitud: ' + altitude);
 
-      // Aquí puedes realizar otras acciones con las coordenadas, como mostrarlas en un mapa, etc.
     } catch (error) {
       console.error('Error al obtener la ubicación', error);
     }
+
   }
+
+  constructor(public geolocation: Geolocation) { }
+
+  ngOnInit() {
+  }
+
+
 
 }

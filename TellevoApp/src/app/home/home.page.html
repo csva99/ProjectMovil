@@ -17,30 +17,24 @@
       <form (ngSubmit)="enviarInformacion()">
         <ion-list class="lista">
           <ion-item class="input">
-            <ion-input class="input" [(ngModel)]= "cred.mail" label="Email" labelPlacement="floating"
-            placeholder="Ingrese su Email">
-            </ion-input>
+            <ion-input class="input" [(ngModel)]="cred.mail" name="email" label="Email" labelPlacement="floating"
+              placeholder="Ingrese su Email"></ion-input>
           </ion-item><br>
           <ion-item class="input">
-            <ion-input class="input" [(ngModel)]= "cred.password" label="Contraseña" type="password" labelPlacement="floating"
-            placeholder="Ingrese su Contraseña"></ion-input>
+            <ion-input class="input" [(ngModel)]="cred.password" name="password" label="Contraseña" type="password"
+              labelPlacement="floating" placeholder="Ingrese su Contraseña"></ion-input>
           </ion-item><br>
           <ion-item class="input">
-            <ion-toggle class="input" aria-label="Success toggle" color="success" [checked]="true"> Recuerdame</ion-toggle>
+            <ion-toggle class="input" aria-label="Success toggle" color="success" [checked]="true"> Recuérdame</ion-toggle>
           </ion-item><br>
           <ion-buttons>
-            <ion-button color="dark" (click)="irarestablecer()">
-              Olvidé mi contraseña
-            </ion-button>
+            <ion-button color="dark" (click)="irarestablecer()">Olvidé mi contraseña</ion-button>
           </ion-buttons><br>
           <ion-buttons size="small" shape="round">
-          <ion-button type="submit" size="small" shape="round">Conectar</ion-button>
+            <ion-button type="submit" size="small" shape="round">Conectar</ion-button>
           </ion-buttons>
-          <ion-button id="open-modal" shape="round" size="small">
-            Registrarse
-          </ion-button><br>
+          <ion-button id="open-modal" shape="round" size="small">Registrarse</ion-button><br>
           <div>
-
             <h1>{{mensaje}}</h1><br>
           </div>
         </ion-list>

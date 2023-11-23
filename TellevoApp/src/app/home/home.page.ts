@@ -33,17 +33,15 @@ export class HomePage {
   }
 
   enviarInformacion() {
-    console.log(typeof this.cred)
+    console.log(this.cred)
     console.log(this.cred.password)
     const email = this.cred.mail
     const password = this.cred.password
     this.api.enviarcred(email,password).subscribe(
       (response) => {
-        // Manejar la respuesta exitosa (guardar token, redirigir, etc.)
         console.log('Login exitoso:', response);
       },
       (error) => {
-        // Manejar el error (mostrar mensaje de error, etc.)
         console.log(Response)
         console.error('Codigo de estado HTTP:', error.status);
         console.error('Error en el login:', error);
@@ -70,7 +68,7 @@ export class HomePage {
     this.modal.dismiss(null, 'cancel');
   }
 
-   async confirm() {
+  async confirm() {
     this.auth.register(this.user.mail, this.user.password, this.user.confirmarpass).then((a: any)=> {
       if(a){
         this.estado = "Correo ya existe";

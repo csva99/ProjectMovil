@@ -23,23 +23,17 @@ export class ApiService {
     .pipe(retry(3));
   }
 
-  // enviarcred(mail : string, password : string): Observable<any>{
-  //   const body = { mail, password };
-  //   return this.http.post(this.apiURL + "/login_view" , body)
-  // }
+
   enviarcred(email: string, password: string): Observable<any> {
     const body = { email, password };
     
-    // ObtÃ©n el token CSRF de las cookies
     const csrfToken = this.getCookie('csrftoken');
 
-    // Configura las cabeceras con el token CSRF
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'X-CSRFToken': csrfToken,
     });
 
-    // Realiza la solicitud POST con las cabeceras configuradas
     return this.http.post(this.apiURL + '/login_view', body, { headers });
   }
 
