@@ -10,10 +10,8 @@
     <ion-card-header class="titulo">
       <ion-card-title>Credenciales</ion-card-title>
     </ion-card-header>
-
-
+  
     <ion-card-content class="cuerpocard">
-
       <form (ngSubmit)="enviarInformacion()">
         <ion-list class="lista">
           <ion-item class="input">
@@ -60,7 +58,7 @@
         </ion-header>
         <ion-content class="ion-padding">
           <ion-item>
-            <ion-input [(ngModel)]="user.mail" label="Nombre Usuario" labelPlacement="floating"
+            <ion-input [(ngModel)]="user.email" label="Nombre Usuario" labelPlacement="floating"
               placeholder="Ingrese su Usuario"></ion-input>
           </ion-item>
           <ion-item>
