@@ -12,13 +12,13 @@
     </ion-card-header>
   
     <ion-card-content class="cuerpocard">
-      <form [formGroup]="formularioLogin" (ngSubmit)="enviarInformacion">
+      <form  (ngSubmit)="enviarInformacion">
         <ion-list class="lista">
           <ion-item class="input">
             <ion-input
               type="text"
               id="mail"
-              formControlName="mail"
+              ([ngModel])="cred.mail"
               label="Email"
               labelPlacement="floating"
               placeholder="Ingrese su Email"
@@ -28,7 +28,7 @@
           <ion-item class="input">
             <ion-input
               id="password"
-              formControlName="password"
+              ([ngModel])="cred.password"
               label="Contraseña"
               type="password"
               labelPlacement="floating"
