@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage-angular';
 
 
 interface User{
-  username: string;
+  email: string;
   password: string;
   confirmarpass: string;
 }
@@ -14,6 +14,9 @@ interface User{
 })
 
 export class AutenticacionService {
+  guardarAutenticacion(success: any) {
+    throw new Error('Method not implemented.');
+  }
   public autenticado!: boolean;
 
   private local!: Storage;
@@ -27,14 +30,14 @@ export class AutenticacionService {
   }
 
 
-  async register(username: string, password: string, confirmarpass: string): Promise<boolean>{
+  async register(email: string, password: string, confirmarpass: string): Promise<boolean>{
     const users = await this.local?.get('users') || [];
-    const existe = users.find((us: User) => us.username === username && us.password === password && us.confirmarpass === confirmarpass) ;
+    const existe = users.find((us: User) => us.email === email && us.password === password && us.confirmarpass === confirmarpass) ;
     if(existe){
       console.log("usuario ya existe")
       return true;
     }else{
-      const nuevo: User = { username, password, confirmarpass};
+      const nuevo: User = { email, password, confirmarpass};
       users.push(nuevo);
       await this.local.set('users', users);
       console.log("Registro exitoso");
@@ -42,9 +45,9 @@ export class AutenticacionService {
     }
   }
 
-  async login(username: string, password: string): Promise<boolean>{
+  async login(email: string, password: string): Promise<boolean>{
     const users: User[] = (await this.local.get('users')) || [];
-    const user = users.find((us: User) => us.username === username && us.password === password); 
+    const user = users.find((us: User) => us.email === email && us.password === password); 
     if (user){
       this.autenticado = true;
       return true;
