@@ -31,7 +31,8 @@ class Tipousuario(models.Model):
 
 class Usuario(models.Model):
 
-    email = models.EmailField(primary_key=True, unique=True)
+    email = models.EmailField(primary_key=True, unique=True, verbose_name="Correo")
+    password = models.CharField(max_length=50, verbose_name="Contraseña")
     tipouser = models.ForeignKey(Tipousuario.nombretipouser, null=True, verbose_name="Tipo de usuario", on_delete=models.CASCADE)
 
     def str(self):
