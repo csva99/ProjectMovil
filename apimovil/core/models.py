@@ -26,18 +26,39 @@ class Tipousuario(models.Model):
     id = models.IntegerField(primary_key=True)
     nombretipouser = models.CharField(unique=True, max_length=50, verbose_name="Nombre tipo de usuario")
 
-class Usuario(AbstractBaseUser):
+    def str(self):
+        return self.nombretipouser
+
+class Usuario(models.Model):
 
     email = models.EmailField(primary_key=True, unique=True)
-    tipouser = models.ForeignKey(Tipousuario, null=True, verbose_name="Tipo de usuario", on_delete=models.CASCADE)
-    # Otros campos que desees agregar a tu modelo de usuario
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-
-    objects = UsuarioManager()
-
-    USERNAME_FIELD = 'email'
-    # Otros campos requeridos para el registro de usuario, si los hay
+    tipouser = models.ForeignKey(Tipousuario.nombretipouser, null=True, verbose_name="Tipo de usuario", on_delete=models.CASCADE)
 
     def str(self):
         return self.email
+    
+class Vehiculo(models.Model):
+    patente = models.CharField(primary_key=True, max_length=50, verbose_name="Patente")
+    marca = models.CharField(max_length=20, verbose_name="Marca auto")
+    cant_pasajeros = models.CharField(max_length=4, verbose_name="Cantidad de pasajeros")
+
+    def str(self):
+        return self.patente
+    
+class Viaje(models.Model):
+    idViaje = models.IntegerField(primary_key=True, max_length=2, verbose_name="Id del Viaje")
+    hora = models.CharField(max_length=5, verbose_name="Hora del Viaje")
+    precio = models.CharField(max_length=6, verbose_name="Precio del viaje")
+    patente_vehiculo = models.ForeignKey(Vehiculo.patente, verbose_name="Patente Vehiculo")
+    cant_pasajeros = models.ForeignKey(Vehiculo.cant_pasajeros,  verbose_name="Patente Vehiculo")
+
+    def str(self):
+        return self.idViaje
+    
+class Usuario_Viaje(models.Model):
+    idUsario_viaje = models.CharField(primary_key=True, max_length=3, null=False)
+    email_user = models.ForeignKey(Usuario.email, verbose_name="Email del Usuario")
+    idViaje = models.ForeignKey(Viaje.idViaje, verbose_name="ID del Viaje")
+
+    def str(self):
+        return self.idUsario_viaje
