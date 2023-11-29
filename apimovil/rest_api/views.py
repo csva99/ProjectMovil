@@ -19,7 +19,7 @@ def login(request):
         usuario = Usuario.objects.get(email = email)
     except Usuario.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
-    if (usuario.password == password)
+    if (usuario.password == password):
         response = {
             "perfil" : 1
         }
