@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from core.models import Usuario, Vehiculo, Viaje, Usuario_Viaje
+from core.models import Usuario, Vehiculo, Viaje
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['email', 'password']
+        fields = ['tipouser']
 
 class VehiculoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -16,7 +16,3 @@ class ViajeSerializer(serializers.ModelSerializer):
         model = Viaje
         fields =['idViaje', 'hora', 'precio', 'patente_vehiculo', 'cant_pasajeros']
 
-class Usuario_ViajeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Usuario_Viaje
-        fields = ['idUsuario_viaje', 'email_user', 'idViaje']

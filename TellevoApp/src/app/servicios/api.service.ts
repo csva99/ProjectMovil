@@ -18,43 +18,13 @@ export class ApiService {
   }
   constructor(private http: HttpClient) { }
 
-  Obtenercred() : Observable<any>{
-    return this.http.get(this.apiURL + "/datosuser")
-    .pipe(retry(3));
-  }
-
-
-  enviarcred(email: string, password: string): Observable<any> {
+  enviarCred(email: string, password: string): Observable<any> {
     const body = { email, password };
-    
-    const csrfToken = this.getCookie('csrftoken');
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'X-CSRFToken': csrfToken,
-    });
-
-    return this.http.post(this.apiURL + '/login_view', body, { headers });
+    return this.http.post(this.apiURL + '/login', body);
   }
 
-  private getCookie(name: string, defaultValue: string = ''): string {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) {
-      const cookieValue = parts.pop();
-      return cookieValue ? cookieValue.split(';').shift() || defaultValue : defaultValue;
-    }
-    return defaultValue;
-  }
-
-  //Obtener un usuario
-  Obtenernick(): Observable<any>{
-    return this.http.get(this.apiURL+ "/obteneruser")
+  obtenerTipouser(email: string): Observable<any>{
+    return this.http.get(this.apiURL+'/tipouser' + email)
     .pipe(retry(3));
   }
-
-  Obtenerpass(): Observable<any>{
-    return this.http.get(this.apiURL + "/obtenerpass")
-    .pipe(retry(3));
-  }  
 }

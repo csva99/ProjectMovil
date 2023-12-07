@@ -36,20 +36,22 @@ export class HomePage  {
     confirmarpass: ""
   }
 
-
-
   cred = {
     mail : "",
     password:  ""
   }
+
   enviarInformacion() {
-    console.log(this.cred.mail)
-    console.log(this.cred.password)
     const email = this.cred.mail
     const password = this.cred.password
-    this.api.enviarcred(email,password).subscribe(
+    this.api.enviarCred(email,password).subscribe(
       (response) => {
-        console.log('Login exitoso:', response);
+        console.log("Login exitoso");
+        if (response == 1) {
+          this.router.navigate(['pasajero'])
+        }if (response == 2) {
+          this.router.navigate(['conductor'])
+        }
       },
       (error) => {
         console.log(Response)
@@ -91,7 +93,7 @@ export class HomePage  {
     })
   } 
 
-   /* async confirm() {
+  /* async confirm() {
     if (this.user.usuario != "" && this.user.password != "" && this.user.password == this.user.confirmarpass ) {
       this.estado = "Usuario ya existe.";
       this.modal.dismiss(null, 'confirmar');
