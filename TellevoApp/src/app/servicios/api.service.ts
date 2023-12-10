@@ -23,8 +23,10 @@ export class ApiService {
     return this.http.post(this.apiURL + '/login', body);
   }
 
-  obtenerTipouser(email: string): Observable<any>{
-    return this.http.get(this.apiURL+'/tipouser' + email)
-    .pipe(retry(3));
+  restablecerPass(email: string, password: string): Observable<any> {
+    const body = { email, password };
+    console.log(body)
+    return this.http.put(this.apiURL + '/restablecerpass', body);
   }
+
 }

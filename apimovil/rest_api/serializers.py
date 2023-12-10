@@ -4,7 +4,7 @@ from core.models import Usuario, Vehiculo, Viaje
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['tipouser']
+        fields = ['password']
 
 class VehiculoSerializer(serializers.ModelSerializer):
     class Meta:

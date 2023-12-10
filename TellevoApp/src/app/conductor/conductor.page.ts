@@ -12,11 +12,24 @@ declare var google : any;
 export class ConductorPage implements OnInit {
 
   map : any;
-  // @ViewChild('map', {read: ElementRef, static: false}) mapRef: ElementRef;
+
+  @ViewChild('map', { read: ElementRef, static: false })
+  mapRef: ElementRef;
+
+  constructor(public geolocation: Geolocation) { }
+
+  ngOnInit() {
+  }
 
   mostrarmapa(){
-    const map = new google.map.Latlng(this.getCurrentLocation)
-
+    const location = new google.map.Latlng(this.getCurrentLocation)
+    console.log (location)
+    const options = {
+      center: location,
+      zoom: 15,
+      disableDefaultUI: true
+    }
+    this.map = new google.maps.Map(this.mapRef.nativeElement, options);
   }
 
   async getCurrentLocation() {
@@ -49,11 +62,12 @@ export class ConductorPage implements OnInit {
 
   }
 
-  constructor(public geolocation: Geolocation) { }
-
-  ngOnInit() {
+  ionViewDidEnter(){
+    this.mostrarmapa
   }
 
+  generarViaje(){
 
+  }
 
 }

@@ -1,8 +1,6 @@
 import { Component,ViewChild,ElementRef, OnInit} from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { IonModal,AlertController } from '@ionic/angular';
-import { ReactiveFormsModule } from '@angular/forms'; // Import the ReactiveFormsModule module
-
 import { AutenticacionService } from '../servicios/autenticacion.service';
 import { ApiService } from '../servicios/api.service';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -41,7 +39,7 @@ export class HomePage  {
     password:  ""
   }
 
-  enviarInformacion() {
+async enviarInformacion() {
     const email = this.cred.mail
     const password = this.cred.password
     this.api.enviarCred(email,password).subscribe(
@@ -54,9 +52,7 @@ export class HomePage  {
         }
       },
       (error) => {
-        console.log(Response)
-        console.error('Codigo de estado HTTP:', error.status);
-        console.error('Error en el login:', error);
+        console.log('Error en el login:' + Response)
       }
     );
   } 
@@ -78,20 +74,6 @@ export class HomePage  {
     }
   }  */
 
-  cancel() {
-    this.modal.dismiss(null, 'cancel');
-  }
-
-  async confirm() {
-    this.auth.register(this.user.email, this.user.password, this.user.confirmarpass).then((a: any)=> {
-      if(a){
-        this.estado = "Correo ya existe";
-      }else{
-        this.mensaje = "Registro exitoso";
-        this.modal.dismiss(this.user.email, 'confirm');
-      }
-    })
-  } 
 
   /* async confirm() {
     if (this.user.usuario != "" && this.user.password != "" && this.user.password == this.user.confirmarpass ) {

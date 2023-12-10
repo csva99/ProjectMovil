@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { ApiService } from '../servicios/api.service';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-restablecerpass',
@@ -9,9 +11,15 @@ import { AlertController } from '@ionic/angular';
 })
 export class RestablecerpassPage implements OnInit {
 
-  constructor(private router: Router, private activatedRouter: ActivatedRoute, public alertController: AlertController) { 
+  formularioRestablecer: FormGroup;
 
+  constructor(private router: Router, private activatedRouter: ActivatedRoute, public alertController: AlertController, private api: ApiService, private fb: FormBuilder ) { 
+    this.formularioRestablecer = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    })
   }
+  
 
   public mensaje = "";
 
@@ -21,9 +29,22 @@ export class RestablecerpassPage implements OnInit {
     password: ""
   }
 
-  public nuevapass = {
+  nuevapass = {
     correo: "",
     nueva: ""
+  }
+  restablecer(){
+    const email = this.nuevapass.correo
+    const password = this.nuevapass.nueva
+    console.log(this.nuevapass)
+    this.api.restablecerPass(email, password).subscribe(
+      (response) => {
+        console.log(Response);
+      },
+      (error) => {
+        console.log('Error estoy aqui:' + Response)
+      }
+    );
   }
 
   ngOnInit() {
@@ -42,26 +63,7 @@ export class RestablecerpassPage implements OnInit {
 
   }
 
-  async restablecer(){
-    if(this.user.password != this.nuevapass.nueva){
-      this.user.password = this.nuevapass.nueva;
-      const alert = await this.alertController.create({
-        header: 'Contraseña restablecida.',
-        message: 'Su contraseña ha sido restablecida.',
-        buttons: ['Aceptar'],
-      });
-      await alert.present();
-      this.router.navigate(['home'])
-    }else{
-      const alert = await this.alertController.create({
-        header: 'Error.',
-        message: 'Su nueva contraseña no puede ser igual a la anterior.',
-        buttons: ['Aceptar'],
-      });
-      await alert.present();
-    }
 
-    }
 }
 
 

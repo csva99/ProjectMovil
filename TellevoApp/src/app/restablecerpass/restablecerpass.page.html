@@ -1,19 +1,25 @@
 <ion-header [translucent]="true">
   <ion-back-button></ion-back-button>
   <ion-toolbar>
-    <ion-title>restablecerpass</ion-title>
+    <ion-title>Restablecerpass</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card>
-    <ion-input class="input" [(ngModel)]="nuevapass.correo" label="Correo" labelPlacement="floating"
-    placeholder="Ingrese su Correo">
-    </ion-input>
-    <ion-input   [(ngModel)]="nuevapass.nueva" label="Contraseña" type="password" labelPlacement="floating"
-    placeholder="Ingrese su nueva Contraseña"></ion-input>
-  </ion-card>
-
-  <ion-button (click)="restablecer()">Confirmar</ion-button>
-
+  <form (ngSubmit)="restablecer()">
+      <ion-list>
+        <ion-item class="input">
+          <ion-input class="input" [(ngModel)]="nuevapass.correo" label="Correo" labelPlacement="floating"
+          placeholder="Ingrese su Correo">
+          </ion-input>
+        </ion-item>
+        <ion-item class="input">
+          <ion-input [(ngModel)]="nuevapass.nueva" label="Contraseña" type="Password" labelPlacement="floating"
+          placeholder="Ingrese su nueva Contraseña"></ion-input>
+        </ion-item>
+      </ion-list>
+    <ion-buttons>
+      <ion-button size="default" shape="round" type="submit">Confirmar</ion-button>
+    </ion-buttons>
+  </form>
 </ion-content>
