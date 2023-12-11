@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ApiService } from '../servicios/api.service';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl,FormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-restablecerpass',
@@ -19,32 +19,50 @@ export class RestablecerpassPage implements OnInit {
       password: ['', Validators.required]
     })
   }
-  
-
-  public mensaje = "";
 
   public alertButtons = ['OK'];
   public user = {
     usuario: "",
     password: ""
   }
-
+  
   nuevapass = {
     correo: "",
-    nueva: ""
+    nueva: "",
+    confirmar:""
   }
+
+  public mensaje = "";
+
+  async presentAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Alerta',
+      message: message,
+      buttons: ['OK']
+    });
+  
+    await alert.present();
+  }
+
   restablecer(){
     const email = this.nuevapass.correo
     const password = this.nuevapass.nueva
-    console.log(this.nuevapass)
-    this.api.restablecerPass(email, password).subscribe(
-      (response) => {
-        console.log(Response);
-      },
-      (error) => {
-        console.log('Error estoy aqui:' + Response)
-      }
-    );
+    const confirmarpass = this.nuevapass.confirmar
+    if (password == confirmarpass) {
+      this.api.restablecerPass(email, password).subscribe(
+        (response) => {
+          console.log(Response);
+          this.router.navigate(['home'])
+        },
+        (error) => {
+          console.log(Response)
+          this.presentAlert('Error: La nueva contraseña no puede ser igual a una contraseña antigua.');
+        }
+      );
+    }else{
+      this.presentAlert('Error: Las contraseñas no coinciden.');
+    }
+
   }
 
   ngOnInit() {

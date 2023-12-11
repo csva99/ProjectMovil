@@ -29,4 +29,9 @@ export class ApiService {
     return this.http.put(this.apiURL + '/restablecerpass', body);
   }
 
+  // generarViaje(): Observable<any>{
+    
+  //   return this.http.put(this)
+  // }
+
 }

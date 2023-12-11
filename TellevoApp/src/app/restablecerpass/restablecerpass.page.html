@@ -7,19 +7,25 @@
 
 <ion-content [fullscreen]="true">
   <form (ngSubmit)="restablecer()">
-      <ion-list>
-        <ion-item class="input">
-          <ion-input class="input" [(ngModel)]="nuevapass.correo" label="Correo" labelPlacement="floating"
-          placeholder="Ingrese su Correo">
-          </ion-input>
-        </ion-item>
-        <ion-item class="input">
-          <ion-input [(ngModel)]="nuevapass.nueva" label="Contraseña" type="Password" labelPlacement="floating"
-          placeholder="Ingrese su nueva Contraseña"></ion-input>
-        </ion-item>
-      </ion-list>
-    <ion-buttons>
-      <ion-button size="default" shape="round" type="submit">Confirmar</ion-button>
-    </ion-buttons>
+    <ion-list class="lista">
+      <ion-item class="input">
+        <ion-input class="input" [(ngModel)]="nuevapass.correo" name="email" label="Email" labelPlacement="floating"
+          placeholder="Ingrese su Email"></ion-input>
+      </ion-item><br>
+      <ion-item class="input">
+        <ion-input class="input" [(ngModel)]="nuevapass.nueva" name="password" label="Contraseña" type="password"
+          labelPlacement="floating" placeholder="Ingrese la nueva contraseña"></ion-input>
+      </ion-item><br>
+      <ion-item class="input">
+        <ion-input class="input" [(ngModel)]="nuevapass.confirmar" name="password" label="Contraseña" type="password"
+          labelPlacement="floating" placeholder="Confirma contraseña"></ion-input>
+      </ion-item><br>
+      <ion-buttons>
+        <ion-button class="resbtns" size="default" shape="round" type="submit">Restablecer</ion-button>
+      </ion-buttons>
+      <div>
+        <h1>{{mensaje}}</h1><br>
+      </div>
+    </ion-list>
   </form>
 </ion-content>
