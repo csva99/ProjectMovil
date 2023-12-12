@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+
 class Tipousuario(models.Model):
     id = models.IntegerField(primary_key=True)
     nombretipouser = models.CharField(unique=True, max_length=50, verbose_name="Nombre tipo de usuario")
@@ -17,15 +18,17 @@ class Usuario(models.Model):
 
     def str(self):
         return self.email
-    
+
+
 class Vehiculo(models.Model):
-    patente = models.CharField(primary_key=True, max_length=50, verbose_name="Patente")
+    patente = models.CharField(primary_key=True, max_length=6, verbose_name="Patente")
     marca = models.CharField(max_length=20, verbose_name="Marca auto")
     cant_pasajeros = models.CharField(max_length=4, verbose_name="Cantidad de pasajeros")
-
+    dueño = models.ForeignKey(Usuario,verbose_name="Dueño vehiculo", on_delete=models.CASCADE)
     def str(self):
         return self.patente
-    
+
+
 class Viaje(models.Model):
     idViaje = models.IntegerField(primary_key=True, verbose_name="Id del Viaje")
     hora = models.IntegerField(verbose_name="Hora del Viaje")
@@ -35,4 +38,3 @@ class Viaje(models.Model):
 
     def str(self):
         return self.idViaje
-    

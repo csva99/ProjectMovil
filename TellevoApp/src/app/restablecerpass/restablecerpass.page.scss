@@ -1,0 +1,41 @@
+.titulo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cont{
+    background-image: url(https://i.pinimg.com/736x/53/67/02/53670256e1dc221b4815dc878ba395f2.jpg) !important;
+    background-position: center center !important;
+    background-attachment: fixed !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    opacity: 10px;
+}
+
+.cuerpocard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lista{
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.imghome{
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.input{
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.resbtns{
+    display: flex;
+    align-self: auto;
+    border-radius: 10px;
+    background: #3880ff;
+}

@@ -39,10 +39,22 @@ const routes: Routes = [
     loadChildren: () => import('./conductor/conductor.module').then( m => m.ConductorPageModule)
   },
   {
+    path: 'perfil-conductor',
+    loadChildren: () => import('./perfil-conductor/perfil-conductor.module').then( m => m.PerfilConductorPageModule)
+  },
+  {
+    path: 'crear-vehiculo',
+    loadChildren: () => import('./crear-vehiculo/crear-vehiculo.module').then( m => m.CrearVehiculoPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'page404',
     pathMatch: 'full'
   },
+  
+
+  
+
   
 
 

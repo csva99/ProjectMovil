@@ -24,6 +24,16 @@ export class HomePage  {
     })
   }
 
+  async presentAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Alerta',
+      message: message,
+      buttons: ['OK']
+    });
+  
+    await alert.present();
+  }
+
   public mensaje = ""
   public estado: String = "";
 
@@ -39,20 +49,23 @@ export class HomePage  {
     password:  ""
   }
 
+
 async enviarInformacion() {
     const email = this.cred.mail
     const password = this.cred.password
     this.api.enviarCred(email,password).subscribe(
       (response) => {
-        console.log("Login exitoso");
         if (response == 1) {
           this.router.navigate(['pasajero'])
+          localStorage.setItem('usuario', JSON.stringify(email));
         }if (response == 2) {
-          this.router.navigate(['conductor'])
+          this.router.navigate(['perfil-conductor'])
+          localStorage.setItem('usuario', JSON.stringify(email));
         }
       },
       (error) => {
         console.log('Error en el login:' + Response)
+        this.presentAlert('Correo o contraseña incorrecta.');
       }
     );
   } 

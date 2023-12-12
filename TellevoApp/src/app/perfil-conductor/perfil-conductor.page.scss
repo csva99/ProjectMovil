@@ -1,0 +1,31 @@
+.navreg{
+    text-decoration: none;
+}
+.cont{
+    background-image: url(https://i.pinimg.com/236x/11/83/7c/11837c0ee094b5e12f33fef3d41a1efa.jpg) !important;
+    background-position: center center !important;
+    background-attachment: fixed !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    opacity: 10px;
+}
+
+.cuerpocard{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+}
+
+.titulo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lista{
+    color: rgb(255, 255, 255);
+    text-shadow: 1px;
+    border-radius: 5px;
+    background-color: transparent;
+}

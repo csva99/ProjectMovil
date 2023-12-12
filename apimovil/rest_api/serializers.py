@@ -9,7 +9,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
 class VehiculoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vehiculo
-        fields = ['patente','marca','cant_pasajeros']
+        fields = ['patente','marca','cant_pasajeros', 'dueño']
 
 class ViajeSerializer(serializers.ModelSerializer):
     class Meta:

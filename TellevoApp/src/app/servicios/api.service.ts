@@ -29,6 +29,12 @@ export class ApiService {
     return this.http.put(this.apiURL + '/restablecerpass', body);
   }
 
+  generarVehiculo(patente: string, marca: string, cantpasajeros: string, user: string): Observable<any>{
+    const body ={ patente, marca, cantpasajeros, user
+    };
+    return this.http.put(this.apiURL + '/generarvehiculo', body)
+  }
+
   // generarViaje(): Observable<any>{
     
   //   return this.http.put(this)

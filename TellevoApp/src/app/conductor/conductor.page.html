@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- <form (ngSubmit)="generarViaje">
+  <form (ngSubmit)="generarViaje">
     <ion-list class="lista">
       <ion-item class="input">
         <ion-input class="input" type="time" label="Hora de salida" labelPlacement="floating"
@@ -20,6 +20,6 @@
       </ion-buttons>
     </ion-list>
     <ion-button (click)="getCurrentLocation()">Ubicacion</ion-button>
-  </form> -->
-  <div #map id="map"></div>
+  </form>
+  <div class="map"></div>
 </ion-content>

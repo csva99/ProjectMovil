@@ -1,31 +1,34 @@
 <ion-header [translucent]="true">
-  <ion-back-button></ion-back-button>
   <ion-toolbar>
-    <ion-title>Restablecerpass</ion-title>
+    <ion-button class="btnvolver" color="primary" (click)="irHome()">Volver</ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form (ngSubmit)="restablecer()">
-    <ion-list class="lista">
-      <ion-item class="input">
-        <ion-input class="input" [(ngModel)]="nuevapass.correo" name="email" label="Email" labelPlacement="floating"
-          placeholder="Ingrese su Email"></ion-input>
-      </ion-item><br>
-      <ion-item class="input">
-        <ion-input class="input" [(ngModel)]="nuevapass.nueva" name="password" label="Contraseña" type="password"
-          labelPlacement="floating" placeholder="Ingrese la nueva contraseña"></ion-input>
-      </ion-item><br>
-      <ion-item class="input">
-        <ion-input class="input" [(ngModel)]="nuevapass.confirmar" name="password" label="Contraseña" type="password"
-          labelPlacement="floating" placeholder="Confirma contraseña"></ion-input>
-      </ion-item><br>
-      <ion-buttons>
-        <ion-button class="resbtns" size="default" shape="round" type="submit">Restablecer</ion-button>
-      </ion-buttons>
-      <div>
-        <h1>{{mensaje}}</h1><br>
-      </div>
-    </ion-list>
-  </form>
+  <ion-card class="cont">
+    <ion-card-header class="titulo">
+      <ion-card-title class="titulo">Restablecer Contraseña</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="cuerpocard">
+    <form (ngSubmit)="restablecer()">
+      <ion-list class="lista">
+        <ion-item class="input">
+          <ion-input class="input" [(ngModel)]="nuevapass.correo" name="email" label="Email" labelPlacement="floating"
+            placeholder="Ingrese su Email"></ion-input>
+        </ion-item><br>
+        <ion-item class="input">
+          <ion-input class="input" [(ngModel)]="nuevapass.nueva" name="password" label="Contraseña" type="password"
+            labelPlacement="floating" placeholder="Ingrese la nueva contraseña"></ion-input>
+        </ion-item><br>
+        <ion-item class="input">
+          <ion-input class="input" [(ngModel)]="nuevapass.confirmar" name="password" label="Confirmar contraseña" type="password"
+            labelPlacement="floating" placeholder="Confirma contraseña"></ion-input>
+        </ion-item><br>
+        <ion-buttons>
+          <ion-button class="resbtns" size="default" shape="round" type="submit" color="dark">Restablecer</ion-button>
+        </ion-buttons>
+      </ion-list>
+    </form>
+  </ion-card-content>
+  </ion-card>
 </ion-content>

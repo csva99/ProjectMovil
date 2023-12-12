@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="cont">
+    <ion-card-content class="cuerpocard">
+      <ion-card-header class="titutlo">
+        <ion-card-title>Datos personales</ion-card-title>
+      </ion-card-header>
+      <div id="container" class="cuerpocard">
+        <ion-avatar id="avatar" #avatar>
+          <img alt="Silhouette of a person's head"
+            src="https://w7.pngwing.com/pngs/132/58/png-transparent-volkswagen-beetle-car-volkswagen-car-mode-of-transport-volkswagen.png" />
+        </ion-avatar>
+        <h1 id="titulo">
+          Bienvenido!
+        </h1>
+        <ion-label>Usuario: {{ usuario }} </ion-label><br><br>
+
+        <mat-progress-bar mode="query"></mat-progress-bar>
+        <ion-list class="lista" id="formulario">
+          <ion-label id="sub">Informacion Adicional</ion-label><br>
+          <ion-input  class="input" [(ngModel)]="informacion.nombre" type="text" expand="full" label="Nombre" placeholder="Ingrese Nombre"
+            slot="start"></ion-input>
+          <ion-input class="input" [(ngModel)]="informacion.apellido" type="text" expand="full" label="Apellido"
+            placeholder="Ingrese Apellido" slot="start"></ion-input>
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          <ion-button (click)="iragenvehiculos()">Agregar vehiculo</ion-button>
+            <ion-button size="medium" slot="end" color="danger" >
+              salir
+            </ion-button><br>
+            <ion-button size="medium" slot="end" color="danger" >
+              Generar viaje
+            </ion-button>
+        </ion-list>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

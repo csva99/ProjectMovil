@@ -26,10 +26,10 @@
             <ion-toggle class="input" aria-label="Success toggle" color="success" [checked]="true"> Recuérdame</ion-toggle>
           </ion-item><br>
           <ion-buttons>
-            <ion-button color="dark" (click)="irarestablecer()">Olvidé mi contraseña</ion-button>
+            <ion-button class="irarestablecer" color="dark" (click)="irarestablecer()">Olvidé mi contraseña</ion-button>
           </ion-buttons><br>
           <ion-buttons>
-            <ion-button class="conectbtns" size="default" shape="round" type="submit">Conectar</ion-button>
+            <ion-button class="conectbtns" size="default" shape="round" type="submit" color="dark">Conectar</ion-button>
           </ion-buttons>
           <div>
             <h1>{{mensaje}}</h1><br>
@@ -38,6 +38,4 @@
       </form>
     </ion-card-content>
   </ion-card>
-
-
 </ion-content>

@@ -52,6 +52,7 @@ export class RestablecerpassPage implements OnInit {
       this.api.restablecerPass(email, password).subscribe(
         (response) => {
           console.log(Response);
+          this.presentAlert('Contraseña restablecida exitosamente.');
           this.router.navigate(['home'])
         },
         (error) => {
@@ -79,6 +80,10 @@ export class RestablecerpassPage implements OnInit {
 
     })
 
+  }
+
+  irHome(){
+    this.router.navigate(['home'])
   }
 
 

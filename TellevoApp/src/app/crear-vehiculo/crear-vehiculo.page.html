@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-button class="btnvolver" color="primary" (click)="cancelar()">Volver</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="cont">
+    <ion-card-header class="titulo">
+      <ion-card-title class="titulo">Restablecer Contraseña</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="cuerpocard">
+    <form (ngSubmit)="anadirVehiculo()">
+      <ion-list class="lista">
+        <ion-item class="input">
+          <ion-input class="input" [(ngModel)]="vehiculo.patente" name="Patente" label="Patente" labelPlacement="floating"
+            placeholder="Ingrese la patente del vechiculo"></ion-input>
+        </ion-item><br>
+        <ion-item class="input">
+          <ion-input class="input" [(ngModel)]="vehiculo.marca" name="Marca" label="Marca"
+            labelPlacement="floating" placeholder="Ingrese la marca del vechiculo"></ion-input>
+        </ion-item><br>
+        <ion-item class="input">
+          <ion-input class="input" [(ngModel)]="vehiculo.cantpasajeros" name="Cantidad de pasajeros" label="Cantidad de pasajeros" 
+            labelPlacement="floating" placeholder="ingrese la cantidad de pasajeros"></ion-input>
+        </ion-item><br>
+        <ion-buttons>
+          <ion-button class="agrbtns" size="default" shape="round" type="submit" color="dark">Agregar</ion-button>
+        </ion-buttons>
+      </ion-list>
+    </form>
+  </ion-card-content>
+  </ion-card>
+</ion-content>
