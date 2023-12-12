@@ -2,7 +2,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from core.models import Usuario, Vehiculo
-from .serializers import UsuarioSerializer, VehiculoSerializer
+from .serializers import UsuarioSerializer, VehiculoSerializer, ViajeSerializer
 from rest_framework.parsers import JSONParser
 from rest_framework.decorators import parser_classes
 
@@ -44,7 +44,6 @@ def restablecerpass(request):
 # def mostrarinfouser(request):
 
 
-
 @api_view(['PUT'])
 def generarvehiculo(request):
     data = request.data
@@ -64,4 +63,22 @@ def generarvehiculo(request):
         return Response(status=status.HTTP_201_CREATED)
     else:
         return Response("Error al registrar el vehiculo" ,status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['PUT'])
+def generarviaje(request):
+    data = request.data
+    usuario = data['user']
 
+    try:
+        conductor = Vehiculo.objects.get(dueño = usuario)
+    except Usuario.DoesNotExist: 
+        return Response (status= status.HTTP_404_NOT_FOUND)
+    patente = conductor.patente
+    data = JSONParser().parse(request)
+    serializer = ViajeSerializer(data= data+patente)
+    if serializer.is_valid():
+        serializer.save()
+        print("Viaje creado")
+        return Response(status=status.HTTP_201_CREATED)
+    else:
+        return Response("Error al generar el viaje" ,status=status.HTTP_400_BAD_REQUEST)

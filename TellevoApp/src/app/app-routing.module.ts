@@ -50,7 +50,11 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'page404',
     pathMatch: 'full'
+  },  {
+    path: 'perfil-pasajero',
+    loadChildren: () => import('./perfil-pasajero/perfil-pasajero.module').then( m => m.PerfilPasajeroPageModule)
   },
+
   
 
   
