@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Geolocation } from '@capacitor/geolocation';
 import { ViewChild, ElementRef } from '@angular/core';
 import { GoogleMap } from '@capacitor/google-maps';
-import { environment } from 'src/environments/environment';
 
 declare var google: any;
 declare const window: {
@@ -34,7 +33,7 @@ ngOnInit() {
     this.newMap = await GoogleMap.create({
       id: 'my-cool-map',
       element: this.mapRef.nativeElement,
-      apiKey: environment.apiKey,
+      apiKey:'',
       config: {
         center: {
           lat: 33.6,

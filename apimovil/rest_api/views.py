@@ -74,7 +74,6 @@ def generarviaje(request):
     except Usuario.DoesNotExist: 
         return Response (status= status.HTTP_404_NOT_FOUND)
     patente = conductor.patente
-    data = JSONParser().parse(request)
     serializer = ViajeSerializer(data= data+patente)
     if serializer.is_valid():
         serializer.save()
